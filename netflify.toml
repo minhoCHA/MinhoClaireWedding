@@ -1,10 +1,10 @@
 [build]
   base = "frontend"
-  command = "npm ci && npm run build && npm ci --prefix netlify/functions" 
-  publish = "dist"
+  command = "npm ci && npm run build"
+  publish = "dist"                    # base가 있으니 dist만
 
 [functions]
-  directory = "netlify/functions"  
+  directory = "netlify/functions"     # base(frontend) 아래 경로로 변경
   node_bundler = "esbuild"
 
 [[redirects]]
