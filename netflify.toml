@@ -1,13 +1,19 @@
 [build]
   base = "frontend"
   command = "npm ci && npm run build"
-  publish = "frontend/dist"
+  publish = "dist"                      # base가 있으니 dist만
 
 [functions]
-  directory = "netlify/functions"
+  directory = "../netlify/functions"    # ✅ base(frontend) 기준 상대경로
   node_bundler = "esbuild"
+
+# 함수 경로를 먼저 통과시키고, 나머지는 SPA로 리라이트
+[[redirects]]
+  from = "/.netlify/functions/*"
+  to   = "/.netlify/functions/:splat"
+  status = 200
 
 [[redirects]]
   from = "/*"
-  to = "/index.html"
+  to   = "/index.html"
   status = 200
