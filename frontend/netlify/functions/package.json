@@ -1,7 +1,8 @@
 {
-  "name": "functions",
-  "private": true,
-  "dependencies": {
-    "@netlify/neon": "^0.7.0"
+    "name": "functions",
+    "private": true,
+    "dependencies": {
+      "@netlify/neon": "^1.0.0"
+    }
   }
-}
+  
