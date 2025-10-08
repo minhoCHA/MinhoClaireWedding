@@ -1,17 +1,13 @@
 [build]
-  base = "frontend"
-  command = "npm ci && npm run build"
-  publish = "dist"                    # base가 있으니 dist만
+  # 함수 의존성까지 함께 설치 (플러그인 없이 안전)
+  command = "npm ci && npm run build && npm ci --prefix netlify/functions"
+  publish = "dist"
 
 [functions]
-  directory = "netlify/functions"     # base(frontend) 아래 경로로 변경
+  directory = "netlify/functions"
   node_bundler = "esbuild"
 
-[[redirects]]
-  from = "/.netlify/functions/*"
-  to   = "/.netlify/functions/:splat"
-  status = 200
-
+# SPA 리라이트만 남긴다 — Functions 규칙은 절대 추가하지 말 것
 [[redirects]]
   from = "/*"
   to   = "/index.html"
